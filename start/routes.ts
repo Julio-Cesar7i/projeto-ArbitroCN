@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import CompeticaoController from '#controllers/competicao_controller'
+import ArbitrosController from '#controllers/arbitros_controller'
 
 router.get('/', async () => {
   return {
@@ -17,3 +18,4 @@ router.get('/', async () => {
 })
 
 router.resource('/competicoes', CompeticaoController).apiOnly()
+router.resource('/arbitros', ArbitrosController).apiOnly()
