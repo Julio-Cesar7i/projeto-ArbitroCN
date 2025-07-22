@@ -45,5 +45,16 @@ export default class CompeticaoController {
 
         return response.noContent()
     }
+    public async search({ request, response }: HttpContext) {
+        const { nome } = request.qs()
+        if (!nome) {
+            return response.status(400).json({ error: 'Nome é necessário para a pesquisa' })
+        }
+        const competicao = await Competicao.query().where('nome', nome).first()
+        if (!competicao) {
+            return response.status(404).json({ error: 'Nenhuma competição encontrada!' })
+        }
+        return response.json(competicao)
+    }
 
 }
