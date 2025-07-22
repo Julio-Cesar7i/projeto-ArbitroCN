@@ -30,4 +30,15 @@ export default class ArbitrosController {
     await arbitro.delete()
     return response.noContent()
   }
+  public async search ({ request, response }: HttpContext ) {
+    const { cpf } = request.qs()
+    if (!cpf) {
+      return response.status(400).json({ error: 'CPF é necessario para a pesquisa' })
+    }
+    const arbitro = await Arbitro.query().where('cpf', cpf).first()
+    if (!arbitro) {
+      return response.status(404).json({ error: 'Nenhum Arbitro encontrado!' })
+    }
+    return response.json(arbitro)
+  }
 }
