@@ -9,6 +9,7 @@ tmp
 .env.production.local
 .env.development.local
 docker-compose.yaml
+node_modules
 
 # Frontend assets compiled code
 public/assets
