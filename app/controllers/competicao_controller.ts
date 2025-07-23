@@ -45,6 +45,9 @@ export default class CompeticaoController {
 
         return response.noContent()
     }
+    // Método para pesquisar competições por nome
+    // Retorna uma competição se encontrada, ou um erro se não encontrada
+    // Retorna um erro se o nome não for fornecido
     public async search({ request, response }: HttpContext) {
         const { nome } = request.qs()
         if (!nome) {

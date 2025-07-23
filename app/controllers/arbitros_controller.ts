@@ -30,6 +30,9 @@ export default class ArbitrosController {
     await arbitro.delete()
     return response.noContent()
   }
+  // Método para pesquisar árbitros por CPF
+  // Retorna um árbitro se encontrado, ou um erro se não encontrado
+  // Retorna um erro se o CPF não for fornecido
   public async search ({ request, response }: HttpContext ) {
     const { cpf } = request.qs()
     if (!cpf) {
