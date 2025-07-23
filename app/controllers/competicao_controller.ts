@@ -56,5 +56,4 @@ export default class CompeticaoController {
         }
         return response.json(competicao)
     }
-
 }
