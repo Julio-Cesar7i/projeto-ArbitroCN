@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
+import type { ManyToMany } from '@adonisjs/lucid/types/relations'
+import Competicao from './competicao.js'
 
 export default class Arbitro extends BaseModel {
   @column({ isPrimary: true })
@@ -10,6 +12,12 @@ export default class Arbitro extends BaseModel {
 
   @column()
   declare nome: string
+
+  @manyToMany(() => Competicao, {
+    pivotTable: 'arbitro_competicao',
+  })
+  
+  declare competicoes: ManyToMany<typeof Competicao>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
