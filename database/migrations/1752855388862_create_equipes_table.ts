@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-
+      // id da equipe
       table.increments('id')
       // Nome da equipe com o tipo string e usei o .notNullable pra ser obrigatório escrever nesse campo
       table.string('nome', 100).notNullable() 
