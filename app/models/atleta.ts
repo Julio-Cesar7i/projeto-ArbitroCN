@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
 import Equipe from './equipe.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
@@ -23,6 +23,8 @@ export default class Atleta extends BaseModel {
     foreignKey: 'equipeId'
   })
   declare equipe: BelongsTo<typeof Equipe>
+
+  @manyToMany(() => Jogo)
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
