@@ -11,13 +11,6 @@ export default class JogosController {
         const jogo = await Jogo.all()
         response.send(jogo)
     }
-    public async show({params, response }: HttpContext) {
-     const jogo = await Jogo.find(params.id)
-     if (!jogo) {
-        return response.notFound('Jogo não encontrado')
-     }
-        response.send(jogo)
-    }
     public async store({ request, response }: HttpContext) {
         const jogoData = request.only(['arbitroId'])
         const jogo = await Jogo.create(jogoData)
@@ -40,5 +33,19 @@ export default class JogosController {
         }
         await jogo.delete()
         response.send('Jogo deletado')
+    }
+    public async show({ params, response }: HttpContext) {
+        const jogo = await Jogo.query()
+            .where('id', params.id)
+            .preload('arbitros')
+            .preload('equipes')
+            .preload('atletas')
+            .first()
+
+        if (!jogo) {
+            return response.notFound('Jogo não encontrado')
+        }
+
+        response.send(jogo)
     }
 }

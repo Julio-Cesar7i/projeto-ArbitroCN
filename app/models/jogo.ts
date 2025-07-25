@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, manyToMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
 import Arbitro from './arbitro.js'
 import type { ManyToMany } from '@adonisjs/lucid/types/relations'
 import Equipe from './equipe.js'
