@@ -1,14 +1,14 @@
-import type { HttpContext } from '@adonisjs/core/http'
+//import type { HttpContext } from '@adonisjs/core/http'
 // Importando o Modelo Atleta
-import Atleta from '#models/Atleta'
+//import Atleta from '#models/Atleta'
 
-export default class AtletasController {
+//export default class AtletasController {
     // Função para cadastrar os atletas
     // public async store({request, response}: HttpContext) {
     //     return await Atleta.create(request.only(['nome', 'data_nascimento', 'cpf']))
 
     // }
-}
+//}
 
 
 // app/Controllers/Http/AtletaController.ts
