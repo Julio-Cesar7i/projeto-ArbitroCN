@@ -1,4 +1,4 @@
-//import type { HttpContext } from '@adonisjs/core/http'
+import type { HttpContext } from '@adonisjs/core/http'
 // Importando o Modelo Atleta
 import Atleta from '#models/atleta'
 import { request } from 'http'
@@ -31,9 +31,7 @@ export default class AtletasController {
         const dados = await Atleta.create(request.only(['nome', 'data_nascimento', 'cpf', 'equipeId']))
         return dados
     }
-
 }
->>>>>>> 57e3c24 (Criei e modifiquei o atleta_controller)
 
 
 // app/Controllers/Http/AtletaController.ts
