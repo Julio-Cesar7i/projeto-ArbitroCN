@@ -54,7 +54,7 @@
     "@adonisjs/auth": "^9.4.0",
     "@adonisjs/core": "^6.19.0",
     "@adonisjs/cors": "^2.2.1",
-    "@adonisjs/lucid": "^21.7.0",
+    "@adonisjs/lucid": "^21.8.0",
     "@vinejs/vine": "^3.0.1",
     "dependences": "^0.0.1-security",
     "luxon": "^3.7.1",

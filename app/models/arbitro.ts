@@ -1,5 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
+import Jogo from './jogo.js'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+
 
 export default class Arbitro extends BaseModel {
   @column({ isPrimary: true })
@@ -10,6 +13,9 @@ export default class Arbitro extends BaseModel {
 
   @column()
   declare nome: string
+
+  @hasMany(() => Jogo)
+  declare jogos: HasMany<typeof Jogo>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
