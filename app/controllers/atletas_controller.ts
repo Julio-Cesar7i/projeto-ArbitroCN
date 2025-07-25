@@ -34,6 +34,7 @@ import type { HttpContext } from '@adonisjs/core/http'
     }
 }
 
+
     //public async store({ request }: HttpContext) {
         //const dados = await Atleta.create(request.only(['nome', 'data_nascimento', 'cpf', 'equipeId']))
         //return dados
