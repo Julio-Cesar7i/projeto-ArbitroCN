@@ -1,4 +1,4 @@
-//import type { HttpContext } from '@adonisjs/core/http'
+import type { HttpContext } from '@adonisjs/core/http'
 // Importando o Modelo Atleta
 //import Atleta from '#models/atleta'
 //import { request } from 'http'
@@ -27,12 +27,20 @@
 
     // Função para cadastrar os atletas
 
+
+    public async store({ request }: HttpContext) {
+        const dados = await Atleta.create(request.only(['nome', 'data_nascimento', 'cpf', 'equipeId']))
+        return dados
+    }
+}
+
     //public async store({ request }: HttpContext) {
         //const dados = await Atleta.create(request.only(['nome', 'data_nascimento', 'cpf', 'equipeId']))
         //return dados
     //}
 
 //}
+
 
 
 
