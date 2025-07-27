@@ -34,6 +34,7 @@ export default class CompeticaoController {
             'limiteAtletasPorEquipe',
         ])
 
+        competicao.merge(novosDados)
         await competicao.save()
 
         return response.ok(competicao)

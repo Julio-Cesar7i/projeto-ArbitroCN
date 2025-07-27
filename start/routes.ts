@@ -1,21 +1,14 @@
-/*
-|--------------------------------------------------------------------------
-| Routes file
-|--------------------------------------------------------------------------
-|
-| The routes file is used for defining the HTTP routes.
-|
-*/
-
 import router from '@adonisjs/core/services/router'
-import CompeticaoController from '#controllers/competicao_controller'
-import ArbitrosController from '#controllers/arbitros_controller'
+import CompeticaoController from '../app/controllers/competicao_controller.js'
+import ArbitrosController from '../app/controllers/arbitros_controller.js'
+import AtletasController from '../app/controllers/atletas_controller.js'
+import JogosController from '../app/controllers/jogos_controller.js'
 
-router.get('/', async () => {
-  return {
-    hello: 'world',
-  }
-})
+router.get('/', async () => ({ hello: 'world' }))
 
 router.resource('/competicoes', CompeticaoController).apiOnly()
 router.resource('/arbitros', ArbitrosController).apiOnly()
+router.resource('/atletas', AtletasController).apiOnly()
+router.resource('/jogos', JogosController).apiOnly()
+
+

@@ -29,10 +29,10 @@ export default class Competicao extends BaseModel {
   @column()
   declare limiteAtletasPorEquipe: number | null
 
-  // @manyToMany (() => Equipe, {
-  //   pivotTable: 'competicao_equipe'
-  // })
-  // declare equipes: ManyToMany<typeof Equipe>
+  @manyToMany (() => Equipe, {
+    pivotTable: 'competicao_equipe'
+  })
+  declare equipes: ManyToMany<typeof Equipe>
 
   @manyToMany (() => Arbitro, {
     pivotTable: 'arbitro_competicao'
