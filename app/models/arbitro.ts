@@ -9,7 +9,7 @@ export default class Arbitro extends BaseModel {
   declare id: number
 
   @column()
-  declare cpf: string
+  declare CPF: string
 
   @column()
   declare nome: string

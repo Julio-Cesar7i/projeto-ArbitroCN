@@ -16,7 +16,7 @@ export default class Atleta extends BaseModel {
   declare data_de_nascimento: Date
   
   @column()
-  declare cpf: number
+  declare CPF: number
 
   @column()
   declare equipeId: number
