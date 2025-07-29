@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Competicao from '#models/competicao'
+import Arbitro from '#models/arbitro'
 
 export default class CompeticaoController {
 
@@ -59,5 +60,25 @@ export default class CompeticaoController {
             return response.status(404).json({ error: 'Nenhuma competição encontrada!' })
         }
         return response.json(competicao)
+    }
+    public async listarArbitros({ params, response }: HttpContext) {
+        const competicao = await Competicao.findOrFail(params.id)
+        const arbitros = await competicao.related('arbitros').query()
+        return response.ok(arbitros)
+    }
+
+   public async associarArbitro({ params, request, response }: HttpContext) {
+      const competicao = await Competicao.findOrFail(params.id)
+      const { arbitro_id } = request.only(['arbitro_id'])
+      await Arbitro.findOrFail(arbitro_id)
+      await competicao.related('arbitros').attach([arbitro_id])
+
+      return response.created({ message: 'Árbitro associado à competição com sucesso!' })
+    }
+    public async desassociarArbitro({ params, request, response}: HttpContext) {
+        const competicao = await Competicao.findOrFail(params.id)
+        const arbitroId = request.only(['arbitro_id'])
+        await competicao.related('arbitros').detach([arbitroId.arbitro_id])
+        return response.noContent()
     }
 }

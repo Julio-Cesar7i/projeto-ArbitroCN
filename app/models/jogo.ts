@@ -26,11 +26,9 @@ export default class Jogo extends BaseModel {
   })
   declare atletas: ManyToMany<typeof Atleta>
 
+  
     @column.dateTime()
   declare dataHora: DateTime
-
-  @column()
-  declare competicaoId: number
 
   @belongsTo(() => Competicao)
   declare competicao: BelongsTo<typeof Competicao>

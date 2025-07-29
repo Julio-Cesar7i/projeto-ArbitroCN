@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, manyToMany } from '@adonisjs/lucid/orm'
 import Jogo from './jogo.js'
 import Competicao from './competicao.js'
-import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
+import type { ManyToMany } from '@adonisjs/lucid/types/relations'
 
 export default class Arbitro extends BaseModel {
   @column({ isPrimary: true })
@@ -12,24 +12,25 @@ export default class Arbitro extends BaseModel {
   declare CPF: string
 
   @column()
-  declare nome: string
-
-  @column()
-  declare arbitroId: number 
+  declare data_de_nascimento: Date
 
   @column() 
-  declare competicaoId: number
+  declare email: string
 
-  @hasMany(() => Jogo)
-  declare jogos: HasMany<typeof Jogo>
+  @column()
+  declare telefone: string
+
+  @column()
+  declare nome: string
+
+  @manyToMany(() => Jogo, { pivotTable: 'arbitro_jogo' })
+  declare jogos: ManyToMany<typeof Jogo>
 
   @manyToMany(() => Competicao, {
-    pivotTable: 'arbitro_competicao',
+    pivotTable: 'arbitro_competicaos',
   })
-
-  
   declare competicoes: ManyToMany<typeof Competicao>
-
+  
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

@@ -1,10 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import Arbitro from './arbitro.js'
-import Jogo from './jogo.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import Competicao from './competicao.js'
 
-export default class ArbitroJogo extends BaseModel {
+export default class ArbitroCompeticao extends BaseModel {
+  public static table = 'arbitro_competicaos'
+
   @column({ isPrimary: true })
   declare id: number
 
@@ -12,13 +14,13 @@ export default class ArbitroJogo extends BaseModel {
   declare arbitroId: number
 
   @column()
-  declare jogoId: number
+  declare competicaoId: number
 
-  @belongsTo(() => Arbitro) 
+  @belongsTo(() => Arbitro)
   declare arbitro: BelongsTo<typeof Arbitro>
 
-  @belongsTo(() => Jogo)
-  declare jogo: BelongsTo<typeof Jogo>
+  @belongsTo(() => Competicao)
+  declare competicao: BelongsTo<typeof Competicao>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

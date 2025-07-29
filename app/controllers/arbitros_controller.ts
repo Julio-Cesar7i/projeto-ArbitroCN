@@ -7,7 +7,7 @@ export default class ArbitrosController {
   }
 
   public async store({ request, response }: HttpContext) {
-    const data = request.only(['cpf', 'nome'])
+    const data = request.only(['cpf', 'nome', 'email', 'telefone', 'data_de_nascimento'])
     const arbitro = await Arbitro.create(data)
     return response.status(201).json(arbitro)
   }
@@ -19,7 +19,7 @@ export default class ArbitrosController {
 
   public async update({ params, request, response }: HttpContext) {
     const arbitro = await Arbitro.findOrFail(params.id)
-    const data = request.only(['cpf', 'nome'])
+    const data = request.only(['cpf', 'nome', 'email', 'telefone', 'data_de_nascimento'])
     arbitro.merge(data)
     await arbitro.save()
     return response.json(arbitro)

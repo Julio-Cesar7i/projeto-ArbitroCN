@@ -35,7 +35,7 @@ export default class Competicao extends BaseModel {
   declare equipes: ManyToMany<typeof Equipe>
 
   @manyToMany (() => Arbitro, {
-    pivotTable: 'arbitro_competicao'
+    pivotTable: 'arbitro_competicaos'
   } )
   declare arbitros: ManyToMany<typeof Arbitro>
 

@@ -11,7 +11,7 @@ export default class Atleta extends BaseModel {
 
   @column()
   declare nome: string
-
+  
   @column()
   declare data_de_nascimento: Date
   
@@ -29,7 +29,7 @@ export default class Atleta extends BaseModel {
   @manyToMany(() => Jogo, {
     pivotTable: 'atleta_jogo'
   }) 
-  declare jogos: ManyToMany<typeof Jogo>
+  declare jogos: ManyToMany<typeof Jogo> 
 
   @manyToMany(() => Competicao, {
     pivotTable: 'atleta_competicao'
