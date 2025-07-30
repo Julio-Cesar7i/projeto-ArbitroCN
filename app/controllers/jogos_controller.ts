@@ -8,7 +8,7 @@ export default class JogosController {
     }
 
     public async store({ request, response }: HttpContext) {
-        const dados = request.only(['dataHora', 'competicaoId', 'status'])
+        const dados = request.only(['dataHora', 'competicaoId', 'status', 'nome','local','equipe1Id', 'equipe2Id', 'escalacaoEquipe1Id', 'escalacaoEquipe2Id', 'sumulaDoJogo'])
         const jogo = await Jogo.create(dados)
 
         const arbitros = request.input('arbitros')

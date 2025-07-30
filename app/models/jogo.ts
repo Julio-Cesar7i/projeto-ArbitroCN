@@ -11,6 +11,39 @@ export default class Jogo extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare nome: string  
+
+  @column()
+  declare local: string 
+
+  @column.dateTime()
+  declare data: DateTime  
+
+  @column()
+  declare status: 'agendado' | 'em_andamento' | 'concluido' | 'cancelado' 
+
+  @column()
+  declare sumulaDoJogo: string | null
+
+  @column()
+  declare competicaoId: number | null
+
+  @column()
+  declare arbitroId: number | null
+
+  @column()
+  declare equipe1Id: number | null
+
+  @column()
+  declare equipe2Id: number | null  
+
+  @column()
+  declare escalacaoEquipe1Id: number | null 
+
+  @column()
+  declare escalacaoEquipe2Id: number | null
+
   @manyToMany(() => Arbitro, { 
     pivotTable: 'arbitro_jogo' 
   })
@@ -26,15 +59,8 @@ export default class Jogo extends BaseModel {
   })
   declare atletas: ManyToMany<typeof Atleta>
 
-  
-    @column.dateTime()
-  declare dataHora: DateTime
-
   @belongsTo(() => Competicao)
   declare competicao: BelongsTo<typeof Competicao>
-
-  @column()
-  declare status: string 
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
