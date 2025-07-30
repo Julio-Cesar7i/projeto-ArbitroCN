@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, manyToMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, manyToMany, hasMany } from '@adonisjs/lucid/orm'
 import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
-import Competicao from '#models/competicao'
-import Atleta from '#models/atleta'
+import Competicao from './competicao.js'
+import Atleta from './atleta.js'
 
 export default class Equipe extends BaseModel {
   @column({ isPrimary: true })
@@ -14,14 +14,10 @@ export default class Equipe extends BaseModel {
   @column()
   declare responsavel: string
 
-  @manyToMany(() => Competicao, {
-    pivotTable: 'competicao_equipe'
-  })
+  @manyToMany(() => Competicao, { pivotTable: 'competicao_equipes' })
   declare competicoes: ManyToMany<typeof Competicao>
 
-  @hasMany (() => Atleta, {
-    foreignKey: 'equipeId'
-  })
+  @hasMany(() => Atleta, { foreignKey: 'equipeId' })
   declare atletas: HasMany<typeof Atleta>
 
   @column.dateTime({ autoCreate: true })

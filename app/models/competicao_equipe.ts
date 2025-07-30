@@ -5,10 +5,10 @@ export default class CompeticaoEquipe extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
+  @column({ columnName: 'competicao_id' })
   declare competicaoId: number
 
-  @column()
+  @column({ columnName: 'equipe_id' })
   declare equipeId: number
 
   @column.dateTime({ autoCreate: true })

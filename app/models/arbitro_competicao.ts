@@ -10,10 +10,10 @@ export default class ArbitroCompeticao extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
+  @column({ columnName: 'arbitro_id' })
   declare arbitroId: number
 
-  @column()
+  @column({ columnName: 'competicao_id' })
   declare competicaoId: number
 
   @belongsTo(() => Arbitro)

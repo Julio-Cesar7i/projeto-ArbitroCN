@@ -1,29 +1,32 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Jogo from '../models/jogo.js'
 
-
-
 export default class JogosController {
-    public async index({response}:  HttpContext) {
-        const jogos = await Jogo.query()
-            .preload('competicao')
-            .preload('equipe1', (query) => {
-                query.preload('atletas')
-            })
-            .preload('equipe2', (query) => {
-                query.preload('atletas')
-            })
+    public async index({ request, response }: HttpContext) {
+        const mostrarPrimeiro = request.input('primeiro', false)
 
-        return response.ok(jogos)
+        const query = Jogo.query()
+            .preload('competicao')
+            .preload('equipe1', (q) => q.preload('atletas'))
+            .preload('equipe2', (q) => q.preload('atletas'))
+            .preload('arbitros')
+
+        if (mostrarPrimeiro) {
+            const jogo = await query.first()
+            return response.ok(jogo)
+        } else {
+            const jogos = await query
+            return response.ok(jogos)
+        }
     }
 
     public async show({ params, response }: HttpContext) {
         const jogo = await Jogo.query()
             .where('id', params.id)
+            .preload('competicao')
+            .preload('equipe1', (q) => q.preload('atletas'))
+            .preload('equipe2', (q) => q.preload('atletas'))
             .preload('arbitros')
-            .preload('equipes')
-            .preload('atletas')
-
             .first()
 
         if (!jogo) {
@@ -38,7 +41,18 @@ export default class JogosController {
         if (!jogo) {
             return response.notFound('Jogo não encontrado')
         }
-        const updateData = request.only(['dataHora', 'competicaoId', 'status'])
+        const updateData = request.only([
+            'nome',
+            'data',
+            'local',
+            'status',
+            'competicao_id',
+            'equipe_1_id',
+            'equipe_2_id',
+            'placar_equipe_1',
+            'placar_equipe_2',
+            'sumula_do_jogo'
+        ])
         jogo.merge(updateData)
         await jogo.save()
         return response.ok(jogo)

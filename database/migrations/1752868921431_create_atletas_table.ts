@@ -9,7 +9,7 @@ export default class extends BaseSchema {
 
       table.string('nome', 100).notNullable()
       table.date('data_de_nascimento').notNullable()
-      table.string('CPF').notNullable()
+      table.string('cpf').notNullable()
 
       table.integer('equipe_id').unsigned().references('id').inTable('equipes').onDelete('CASCADE')
 

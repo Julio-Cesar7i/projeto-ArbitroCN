@@ -14,7 +14,7 @@ import Equipe from '#models/equipe'
         }
 
         public async store({ request }: HttpContext) {
-            const dados = await Equipe.create(request.only(['nomw', 'responsavel']))
+            const dados = await Equipe.create(request.only(['nome', 'responsavel']))
             return dados
         }
 

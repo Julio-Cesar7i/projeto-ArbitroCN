@@ -8,10 +8,10 @@ export default class ArbitroJogo extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
+  @column({ columnName: 'arbitro_id' })
   declare arbitroId: number
 
-  @column()
+  @column({ columnName: 'jogo_id' })
   declare jogoId: number
 
   @belongsTo(() => Arbitro) 
