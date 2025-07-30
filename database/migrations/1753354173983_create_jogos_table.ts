@@ -6,14 +6,18 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      // Adicione outros campos relevantes do jogo, como data/hora, status, competicao_id, etc.
+      
       table.string('nome')
-      table.string('descricao')
       table.datetime('data')
       table.string('local')
-      table.string('status') // Ex: 'agendado', 'em andamento', 'concluído'
+      table.enum('status', ['agendado', 'em_andamento', 'concluido', 'cancelado']).defaultTo('agendado')
       table.integer('competicao_id').unsigned().references('id').inTable('competicoes').onDelete('CASCADE')
       table.integer('arbitro_id').unsigned().references('id').inTable('arbitros').onDelete('SET NULL')
+      table.integer('equipe_1_id').unsigned().references('id').inTable('equipes').onDelete('SET NULL')
+      table.integer('equipe_2_id').unsigned().references('id').inTable('equipes').onDelete('SET NULL')
+      table.integer('escalacao_equipe_1_id').unsigned().references('id').inTable('equipe').onDelete('SET NULL')
+      table.integer('escalacao_equipe_2_id').unsigned().references('id').inTable('equipe').onDelete('SET NULL')
+      table.text('sumula_do_jogo').nullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
