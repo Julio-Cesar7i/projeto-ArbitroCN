@@ -38,12 +38,17 @@ export default class Jogo extends BaseModel {
   @column()
   declare equipe2Id: number | null  
 
-  @column()
-  declare escalacaoEquipe1Id: number | null 
+  @belongsTo(() => Equipe, {
+    foreignKey: 'equipe1Id',
+    localKey: 'id'
+  })
+  declare equipe1: BelongsTo<typeof Equipe>
 
-  @column()
-  declare escalacaoEquipe2Id: number | null
-
+  @belongsTo(() => Equipe, {
+    foreignKey: 'equipe2Id',
+    localKey: 'id'
+  })
+  declare equipe2: BelongsTo<typeof Equipe>
   @manyToMany(() => Arbitro, { 
     pivotTable: 'arbitro_jogo' 
   })

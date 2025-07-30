@@ -15,8 +15,6 @@ export default class extends BaseSchema {
       table.integer('arbitro_id').unsigned().references('id').inTable('arbitros').onDelete('SET NULL')
       table.integer('equipe_1_id').unsigned().references('id').inTable('equipes').onDelete('SET NULL')
       table.integer('equipe_2_id').unsigned().references('id').inTable('equipes').onDelete('SET NULL')
-      table.integer('escalacao_equipe_1_id').unsigned().references('id').inTable('equipe').onDelete('SET NULL')
-      table.integer('escalacao_equipe_2_id').unsigned().references('id').inTable('equipe').onDelete('SET NULL')
       table.text('sumula_do_jogo').nullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
