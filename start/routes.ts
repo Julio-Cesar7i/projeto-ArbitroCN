@@ -10,6 +10,6 @@ import AtletasController from '../app/controllers/atletas_controller.js'
 router.resource('/arbitros', ArbitrosController).apiOnly()
 router.resource('/competicoes', CompeticoesController).apiOnly()
 router.resource('/jogos', JogosController).apiOnly()
-router.resource('equipe', EquipesController).apiOnly()
+router.resource('/equipes', EquipesController).apiOnly()
 router.resource('/atletas', AtletasController).apiOnly()
 

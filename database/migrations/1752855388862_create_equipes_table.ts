@@ -11,8 +11,11 @@ export default class extends BaseSchema {
       table.string('nome', 100).notNullable() 
       // Quem está a frente da equipe, a mesma coisa que o nome da equipe
       table.string('responsavel').notNullable()
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.string('cpf_responsavel', 15).notNullable()
+      table.string('email_responsavel', 100).notNullable()
+      table.string('telefone_responsavel', 15).notNullable()
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

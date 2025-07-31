@@ -14,13 +14,13 @@ import Equipe from '#models/equipe'
         }
 
         public async store({ request }: HttpContext) {
-            const dados = await Equipe.create(request.only(['nome', 'responsavel']))
+            const dados = await Equipe.create(request.only(['nome', 'responsavel', 'cpf_responsavel', 'email_responsavel', 'telefone_responsavel']))
             return dados
         }
 
         public async update({ request, params }: HttpContext) {
             const equipe = await Equipe.findOrFail(params.id)
-            const dados = request.only(['nome', 'responsavel'])
+            const dados = request.only(['nome', 'responsavel', 'cpf_responsavel', 'email_responsavel', 'telefone_responsavel'])
 
             equipe.merge(dados)
             await equipe.save()

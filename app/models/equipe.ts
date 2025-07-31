@@ -16,6 +16,15 @@ export default class Equipe extends BaseModel {
   @column()
   declare responsavel: string
 
+  @column({ columnName: 'cpf_responsavel' })
+  declare cpfResponsavel: string
+
+  @column({ columnName: 'email_responsavel' })
+  declare emailResponsavel: string
+
+  @column({ columnName: 'telefone_responsavel' })
+  declare telefoneResponsavel: string
+
   @manyToMany(() => Competicao, { pivotTable: 'competicao_equipes' })
   declare competicoes: ManyToMany<typeof Competicao>
 
