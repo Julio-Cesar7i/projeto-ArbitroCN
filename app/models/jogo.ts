@@ -26,6 +26,7 @@ export default class Jogo extends BaseModel {
   declare status: 'agendado' | 'em_andamento' | 'concluido' | 'cancelado'
 
   @column({ columnName: 'sumula_do_jogo' })
+
   declare sumulaDoJogo: string | null
 
   @column({ columnName: 'placar_equipe_1' })
@@ -52,7 +53,9 @@ export default class Jogo extends BaseModel {
   @belongsTo(() => Equipe, { foreignKey: 'equipe2Id' })
   declare equipe2: BelongsTo<typeof Equipe>
 
-  @manyToMany(() => Arbitro, { pivotTable: 'arbitro_jogos' })
+  @manyToMany(() => Arbitro, { 
+    pivotTable: 'arbitro_jogo' 
+  })
   declare arbitros: ManyToMany<typeof Arbitro>
 
   @manyToMany(() => Atleta, { pivotTable: 'atleta_jogos' })
