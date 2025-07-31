@@ -5,6 +5,8 @@ import Competicao from './competicao.js'
 import Atleta from './atleta.js'
 
 export default class Equipe extends BaseModel {
+  public static table = 'equipes'
+  
   @column({ isPrimary: true })
   declare id: number
 

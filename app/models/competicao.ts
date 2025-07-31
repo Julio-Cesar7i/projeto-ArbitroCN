@@ -5,6 +5,8 @@ import Equipe from './equipe.js'
 import Arbitro from './arbitro.js'
 
 export default class Competicao extends BaseModel {
+  public static table = 'competicoes'
+  
   @column({ isPrimary: true })
   declare id: number
 
@@ -29,7 +31,7 @@ export default class Competicao extends BaseModel {
   @manyToMany(() => Equipe, { pivotTable: 'competicao_equipes' })
   declare equipes: ManyToMany<typeof Equipe>
 
-  @manyToMany(() => Arbitro, { pivotTable: 'arbitro_competicaos' })
+  @manyToMany(() => Arbitro, { pivotTable: 'arbitro_competicoes' })
   declare arbitros: ManyToMany<typeof Arbitro>
 
   @column.dateTime({ autoCreate: true })

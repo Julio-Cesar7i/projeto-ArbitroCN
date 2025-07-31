@@ -5,6 +5,8 @@ import Jogo from './jogo.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class ArbitroJogo extends BaseModel {
+  public static table = 'arbitro_jogos'
+  
   @column({ isPrimary: true })
   declare id: number
 

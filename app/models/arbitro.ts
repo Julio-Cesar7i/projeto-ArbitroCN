@@ -5,6 +5,8 @@ import Jogo from './jogo.js'
 import Competicao from './competicao.js'
 
 export default class Arbitro extends BaseModel {
+  public static table = 'arbitros'
+  
   @column({ isPrimary: true })
   declare id: number
 

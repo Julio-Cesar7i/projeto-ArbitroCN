@@ -5,7 +5,7 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Competicao from './competicao.js'
 
 export default class ArbitroCompeticao extends BaseModel {
-  public static table = 'arbitro_competicaos'
+  public static table = 'arbitro_competicoes'
 
   @column({ isPrimary: true })
   declare id: number

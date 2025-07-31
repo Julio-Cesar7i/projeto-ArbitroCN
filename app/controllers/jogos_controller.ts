@@ -4,7 +4,7 @@ import Jogo from '../models/jogo.js'
 export default class JogosController {
     public async index({ request, response }: HttpContext) {
         const mostrarPrimeiro = request.input('primeiro', false)
-
+        //preload ja faz o papel do inner join, então não precisamos usar o with
         const query = Jogo.query()
             .preload('competicao')
             .preload('equipe1', (q) => q.preload('atletas'))
@@ -22,6 +22,7 @@ export default class JogosController {
 
     public async show({ params, response }: HttpContext) {
         const jogo = await Jogo.query()
+        //aqui também usamos preload para carregar as relações
             .where('id', params.id)
             .preload('competicao')
             .preload('equipe1', (q) => q.preload('atletas'))
@@ -37,10 +38,13 @@ export default class JogosController {
     }
 
     public async update({ params, request, response }: HttpContext) {
+        // Verifica se o ID do jogo é válido
         const jogo = await Jogo.find(params.id)
         if (!jogo) {
             return response.notFound('Jogo não encontrado')
         }
+        // Atualiza os campos do jogo com os dados recebidos na requisição
+        // O método `only` extrai apenas os campos especificados do corpo da requisição
         const updateData = request.only([
             'nome',
             'data',
@@ -57,7 +61,26 @@ export default class JogosController {
         await jogo.save()
         return response.ok(jogo)
     }
+    public async store({ request, response }: HttpContext) {
+        // Cria um novo jogo com os dados recebidos na requisição
+        const jogoData = request.only([
+            'nome',
+            'data',
+            'local',
+            'status',
+            'competicao_id',
+            'equipe_1_id',
+            'equipe_2_id',
+            'placar_equipe_1',
+            'placar_equipe_2',
+            'sumula_do_jogo'
+        ])
+        const jogo = await Jogo.create(jogoData)
+        return response.created(jogo)
+    }
 
+    // Método para deletar um jogo
+    // Verifica se o jogo existe antes de tentar deletar
     public async destroy({ params, response }: HttpContext) {
         const jogo = await Jogo.find(params.id)
         if (!jogo) {

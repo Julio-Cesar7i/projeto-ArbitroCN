@@ -16,10 +16,8 @@ export default class extends BaseSchema {
       // O número pode ter até 10 dígitos no total, sendo que 2 deles são para os centavos. (Ex: R$ 123.456,78).
       table.decimal('valor_inscricao',10,2).defaultTo(0)
       table.integer('limite_atletas_por_equipe').unsigned().nullable()
-
-
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

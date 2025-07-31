@@ -5,6 +5,8 @@ import type { ManyToMany } from '@adonisjs/lucid/types/relations'
 import { manyToMany } from '@adonisjs/lucid/orm'
 
 export default class AtletaJogo extends BaseModel {
+  public static table = 'atleta_jogos'
+  
   @column({ isPrimary: true })
   declare id: number
 

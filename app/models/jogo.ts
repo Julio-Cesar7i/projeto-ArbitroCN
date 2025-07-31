@@ -7,6 +7,9 @@ import Competicao from './competicao.js'
 import Atleta from './atleta.js'
 
 export default class Jogo extends BaseModel {
+  public static table = 'jogos'
+  public static primaryKey = 'id'
+  
   @column({ isPrimary: true })
   declare id: number
 

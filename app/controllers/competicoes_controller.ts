@@ -2,7 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Competicao from '#models/competicao'
 import Arbitro from '#models/arbitro'
 
-export default class CompeticaoController {
+export default class CompeticoesController {
 
     public async index({response}: HttpContext) {
         const competicoes = await Competicao.all()
