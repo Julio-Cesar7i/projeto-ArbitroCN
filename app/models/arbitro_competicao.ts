@@ -5,15 +5,14 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Competicao from './competicao.js'
 
 export default class ArbitroCompeticao extends BaseModel {
-  public static table = 'arbitro_competicoes'
 
   @column({ isPrimary: true })
   declare id: number
 
-  @column({ columnName: 'arbitro_id' })
+  @column()
   declare arbitroId: number
 
-  @column({ columnName: 'competicao_id' })
+  @column()
   declare competicaoId: number
 
   @belongsTo(() => Arbitro)
@@ -27,4 +26,4 @@ export default class ArbitroCompeticao extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
-}
+} 

@@ -5,15 +5,14 @@ import Jogo from './jogo.js'
 import Competicao from './competicao.js'
 
 export default class Arbitro extends BaseModel {
-  public static table = 'arbitros'
   
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare CPF: string
+  declare cpf: string
 
-  @column({ columnName: 'data_de_nascimento' })
+  @column()
   declare dataDeNascimento: Date
 
   @column()
@@ -28,7 +27,7 @@ export default class Arbitro extends BaseModel {
   @manyToMany(() => Jogo, { pivotTable: 'arbitro_jogos' })
   declare jogos: ManyToMany<typeof Jogo>
 
-  @manyToMany(() => Competicao, { pivotTable: 'arbitro_competicaos' })
+  @manyToMany(() => Competicao, { pivotTable: 'arbitro_competicoes' })
   declare competicoes: ManyToMany<typeof Competicao>
 
   @column.dateTime({ autoCreate: true })

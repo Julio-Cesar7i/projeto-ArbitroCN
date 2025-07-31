@@ -2,14 +2,14 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class CompeticaoEquipe extends BaseModel {
-  public static table = 'competicao_equipe'
+
   @column({ isPrimary: true })
   declare id: number
 
-  @column({ columnName: 'competicao_id' })
+  @column()
   declare competicaoId: number
 
-  @column({ columnName: 'equipe_id' })
+  @column()
   declare equipeId: number
 
   @column.dateTime({ autoCreate: true })

@@ -13,19 +13,19 @@ export default class Competicao extends BaseModel {
   @column()
   declare nome: string
 
-  @column({ columnName: 'tipo_fase' })
+  @column()
   declare tipoFase: string
 
   @column()
   declare regulamento: string | null
 
-  @column({ columnName: 'local_principal' })
+  @column()
   declare localPrincipal: string | null
 
-  @column({ columnName: 'valor_inscricao' })
+  @column()
   declare valorInscricao: number
 
-  @column({ columnName: 'limite_atletas_por_equipe' })
+  @column()
   declare limiteAtletasPorEquipe: number | null
 
   @manyToMany(() => Equipe, { pivotTable: 'competicao_equipes' })

@@ -5,7 +5,7 @@ import Equipe from './equipe.js'
 import Jogo from './jogo.js'
 
 export default class Atleta extends BaseModel {
-  public static table = 'atletas'
+
 
   @column({ isPrimary: true })
   declare id: number
@@ -14,12 +14,12 @@ export default class Atleta extends BaseModel {
   declare nome: string
 
   @column()
-  declare CPF: string
+  declare cpf: string
 
-  @column({ columnName: 'data_de_nascimento' })
+  @column()
   declare dataDeNascimento: Date
 
-  @column({ columnName: 'equipe_id' })
+  @column()
   declare equipeId: number
 
   @belongsTo(() => Equipe, { foreignKey: 'equipeId' })

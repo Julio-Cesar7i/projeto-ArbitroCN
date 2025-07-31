@@ -5,7 +5,6 @@ import Competicao from './competicao.js'
 import Atleta from './atleta.js'
 
 export default class Equipe extends BaseModel {
-  public static table = 'equipes'
   
   @column({ isPrimary: true })
   declare id: number
@@ -16,13 +15,13 @@ export default class Equipe extends BaseModel {
   @column()
   declare responsavel: string
 
-  @column({ columnName: 'cpf_responsavel' })
+  @column()
   declare cpfResponsavel: string
 
-  @column({ columnName: 'email_responsavel' })
+  @column()
   declare emailResponsavel: string
 
-  @column({ columnName: 'telefone_responsavel' })
+  @column()
   declare telefoneResponsavel: string
 
   @manyToMany(() => Competicao, { pivotTable: 'competicao_equipes' })

@@ -7,8 +7,6 @@ import Competicao from './competicao.js'
 import Atleta from './atleta.js'
 
 export default class Jogo extends BaseModel {
-  public static table = 'jogos'
-  public static primaryKey = 'id'
   
   @column({ isPrimary: true })
   declare id: number
@@ -25,22 +23,22 @@ export default class Jogo extends BaseModel {
   @column()
   declare status: 'agendado' | 'em_andamento' | 'concluido' | 'cancelado'
 
-  @column({ columnName: 'sumula_do_jogo' })
+  @column()
   declare sumulaDoJogo: string | null
 
-  @column({ columnName: 'placar_equipe_1' })
+  @column()
   declare placarEquipe1: number | null
 
-  @column({ columnName: 'placar_equipe_2' })
+  @column()
   declare placarEquipe2: number | null
 
-  @column({ columnName: 'equipe_1_id' })
+  @column()
   declare equipe1Id: number | null
 
-  @column({ columnName: 'equipe_2_id' })
+  @column()
   declare equipe2Id: number | null
 
-  @column({ columnName: 'competicao_id' })
+  @column()
   declare competicaoId: number | null
 
   @belongsTo(() => Competicao, { foreignKey: 'competicaoId' })

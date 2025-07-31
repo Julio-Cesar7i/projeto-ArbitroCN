@@ -5,15 +5,15 @@ import type { ManyToMany } from '@adonisjs/lucid/types/relations'
 import { manyToMany } from '@adonisjs/lucid/orm'
 
 export default class AtletaJogo extends BaseModel {
-  public static table = 'atleta_jogos'
+  
   
   @column({ isPrimary: true })
   declare id: number
 
-  @column({ columnName: 'atleta_id' })
+  @column()
   declare atletaId: number
 
-  @column({ columnName: 'jogo_id' })
+  @column()
   declare jogoId: number
 
   @manyToMany(() => Jogo, { pivotTable: 'atleta_jogo' })
