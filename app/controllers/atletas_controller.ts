@@ -21,8 +21,10 @@ export default class AtletasController {
     }
 
     if (competicaoId) {
-      consulta = consulta.whereHas('competicao', (query) => {
-        query.where('id', competicaoId)
+      consulta = consulta.whereHas('equipe', (query) => {
+        query.whereHas('competicoes', (q) => {
+          q.where('id', competicaoId)
+        })
       })
     }
 
