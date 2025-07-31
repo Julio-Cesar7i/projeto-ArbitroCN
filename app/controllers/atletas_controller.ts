@@ -39,7 +39,7 @@ export default class AtletasController {
 
   // Função para criar um novo atleta
   public async store({ request }: HttpContext) {
-    const dados = request.only(['nome', 'data_nascimento', 'cpf', 'equipeId'])
+    const dados = request.only(['nome', 'data_de_nascimento', 'cpf', 'equipeId'])
     const atleta = await Atleta.create(dados)
     return atleta
   }
@@ -47,7 +47,7 @@ export default class AtletasController {
   // Função para atualizar um atleta existente
   public async update({ request, params }: HttpContext) {
     const atleta = await Atleta.findOrFail(params.id)
-    const dados = request.only(['nome', 'data_nascimento', 'cpf'])
+    const dados = request.only(['nome', 'data_de_nascimento', 'cpf'])
     atleta.merge(dados)
     await atleta.save()
     return atleta

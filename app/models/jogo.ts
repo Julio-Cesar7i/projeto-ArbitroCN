@@ -28,19 +28,19 @@ export default class Jogo extends BaseModel {
 
   declare sumulaDoJogo: string | null
 
-  @column()
+  @column( { columnName: 'placar_equipe_1' })
   declare placarEquipe1: number | null
 
-  @column()
+  @column( { columnName: 'placar_equipe_2' })
   declare placarEquipe2: number | null
 
-  @column()
+  @column( { columnName: 'equipe_1_id' })
   declare equipe1Id: number | null
 
-  @column()
+  @column( { columnName: 'equipe_2_id' })
   declare equipe2Id: number | null
 
-  @column()
+  @column(  { columnName: 'competicao_id' })
   declare competicaoId: number | null
 
   @belongsTo(() => Competicao, { foreignKey: 'competicaoId' })
@@ -53,7 +53,7 @@ export default class Jogo extends BaseModel {
   declare equipe2: BelongsTo<typeof Equipe>
 
   @manyToMany(() => Arbitro, { 
-    pivotTable: 'arbitro_jogo' 
+    pivotTable: 'arbitro_jogos' 
   })
   declare arbitros: ManyToMany<typeof Arbitro>
 
