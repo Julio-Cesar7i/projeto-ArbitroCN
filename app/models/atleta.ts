@@ -20,7 +20,7 @@ export default class Atleta extends BaseModel {
   declare dataDeNascimento: Date
 
   @column()
-  declare equipeId: number
+  declare equipeId: number  | null
 
   @belongsTo(() => Equipe, { foreignKey: 'equipeId' })
   declare equipe: BelongsTo<typeof Equipe>

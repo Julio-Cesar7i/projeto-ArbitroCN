@@ -100,4 +100,30 @@ export default class JogosController {
         await jogo.delete()
         return response.noContent()
     }
+    public async removerArbitro({ params, response }: HttpContext) {
+        const jogo = await Jogo.find(params.id)
+        if (!jogo) {
+            return response.notFound('Jogo não encontrado')
+        }
+        await jogo.related('arbitros').detach([params.arbitroId])
+        return response.noContent()
+    }
+
+    public async removerEquipe({ params, response }: HttpContext) {
+        const jogo = await Jogo.find(params.id)
+        if (!jogo) {
+            return response.notFound('Jogo não encontrado')
+        }
+        // Remove a equipe 1 ou equipe 2 do jogo, conforme o parâmetro passado
+        if (params.equipeCampo === '1') {
+            jogo.equipe1Id = null
+        } else if (params.equipeCampo === '2') {
+            jogo.equipe2Id = null
+        } else {
+            return response.badRequest('Parâmetro equipeCampo deve ser "1" ou "2"')
+        }
+        await jogo.save()
+        return response.ok(jogo)
+    }
 }
+
