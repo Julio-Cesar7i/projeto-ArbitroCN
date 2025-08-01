@@ -12,6 +12,9 @@ export default class Jogo extends BaseModel {
   declare id: number
 
   @column()
+  declare arbitroId: number | null
+  
+  @column()
   declare nome: string
 
   @column()

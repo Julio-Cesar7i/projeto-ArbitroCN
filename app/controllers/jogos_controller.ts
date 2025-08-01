@@ -59,6 +59,13 @@ export default class JogosController {
         ])
         jogo.merge(updateData)
         await jogo.save()
+
+        
+        const arbitros = request.input('arbitros')
+        if (arbitros && Array.isArray(arbitros)) {
+            await jogo.related('arbitros').sync(arbitros)
+        }
+
         return response.ok(jogo)
     }
     public async store({ request, response }: HttpContext) {
@@ -76,6 +83,10 @@ export default class JogosController {
             'sumula_do_jogo'
         ])
         const jogo = await Jogo.create(jogoData)
+        const arbitros = request.input('arbitros')
+        if (arbitros && Array.isArray(arbitros)) {
+            await jogo.related('arbitros').attach(arbitros)
+        }
         return response.created(jogo)
     }
 
