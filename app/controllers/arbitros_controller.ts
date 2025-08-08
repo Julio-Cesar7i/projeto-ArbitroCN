@@ -10,6 +10,8 @@ export default class ArbitrosController {
 
   public async store({ request, response }: HttpContext) {
     const data = await request.validateUsing(createArbitroValidator)
+   /*  const data = request.only(["cpf", "nome", "email", "telefone", "data_de_nascimento"]);
+    await createArbitroValidator.validate(data); */
     const arbitro = await Arbitro.create(data)
     return response.status(201).json(arbitro)
   }

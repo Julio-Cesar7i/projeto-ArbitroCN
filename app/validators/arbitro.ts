@@ -1,5 +1,4 @@
 import vine from '@vinejs/vine'
-import { DateTime } from 'luxon'
 
 export const createArbitroValidator = vine.compile(
   vine.object({
@@ -26,7 +25,6 @@ export const createArbitroValidator = vine.compile(
     telefone: vine.string().trim().regex(/^\d{8,9}$/),
 
     data_de_nascimento: vine
-      .date({ formats: ['dd-MM-yyyy', 'yyyy-MM-dd'] })
-      .transform((value) => DateTime.fromJSDate(value)),
+      .date({ formats: ['DD-MM-YYYY'] }),
   })
 )
