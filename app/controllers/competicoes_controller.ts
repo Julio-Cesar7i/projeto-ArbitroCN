@@ -1,7 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Competicao from '#models/competicao'
 import Arbitro from '#models/arbitro'
-import { createCompeticaoValidator } from '../validators/competicao.js'
 
 export default class CompeticoesController {
   public async index({ response }: HttpContext) {
@@ -10,14 +9,14 @@ export default class CompeticoesController {
   }
 
   public async store({ request, response }: HttpContext) {
-    const dados = await request.validateUsing(createCompeticaoValidator) /* request.only([
+    const dados = request.only([
       'nome',
       'tipoFase',
       'regulamento',
       'localPrincipal',
       'valorInscricao',
       'limiteAtletasPorEquipe',
-    ]) */
+    ])
     const competicao = await Competicao.create(dados)
     return response.created(competicao)
   }
