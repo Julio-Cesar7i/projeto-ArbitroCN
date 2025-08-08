@@ -8,4 +8,4 @@ export const createArbitroValidator = vine.compile(
     telefone: vine.string(),
     data_de_nascimento: vine.date(),
   })
-)
+) 
