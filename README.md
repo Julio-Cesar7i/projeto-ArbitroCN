@@ -1,5 +1,7 @@
 # Projeto ArbitroCN
 
+# Parte 1 do projeto
+
 ## Endpoints da API REST
 
 ### Jogos
@@ -61,3 +63,10 @@
 - **POST** `/atletas` — Cria um novo atleta
 - **PUT** `/atletas/:id` — Atualiza um atleta existente
 - **DELETE** `/atletas/:id` — Remove
+
+
+# Parte 2 do projeto
+- Implementado as validaçoes de equipes, atletas, arbitros, competições e jogos.
+- tratamento de erro no cpf e em email
+- tratamento de erro em data agora é possivel colocar a data começando pelos dias e não como o de sempre que começa pelo ano.
+- testes completos e esta tudo funcionando.
